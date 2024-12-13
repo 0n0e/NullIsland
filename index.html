@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポートフォリオ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">自己紹介</a></li>
+                <li><a href="#skills">スキル</a></li>
+                <li><a href="#projects">プロジェクト</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <h1>私のポートフォリオ</h1>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>自己紹介</h2>
+            <p>こんにちは！私は[あなたの名前]です。Web開発に情熱を持っています。</p>
+        </section>
+
+        <section id="skills">
+            <h2>スキル</h2>
+            <ul>
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Node.js</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>プロジェクト</h2>
+            <div class="project">
+                <h3>プロジェクト名 1</h3>
+                <p>このプロジェクトについての簡単な説明。</p>
+                <a href="#">プロジェクトを見る</a>
+            </div>
+            <div class="project">
+                <h3>プロジェクト名 2</h3>
+                <p>このプロジェクトについての簡単な説明。</p>
+                <a href="#">プロジェクトを見る</a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>お問い合わせ</h2>
+            <form>
+                <label for="name">名前:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">メールアドレス:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">メッセージ:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">送信</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 あなたの名前</p>
+    </footer>
+</body>
+</html>
