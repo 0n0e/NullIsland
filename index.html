@@ -3,23 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポートフォリオ</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Wikipedia リダイレクトアート</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px;
+        }
+        .line {
+            margin: 5px 0;
+            transition: color 0.5s;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>0n0e Portfolio</h1>
-    </header>
+    <h1>Wikipedia リダイレクトアート</h1>
+    <p>キーワードを入力して始めましょう:</p>
+    <input type="text" id="keyword" placeholder="キーワードを入力" />
+    <button onclick="startRedirect()">開始</button>
+    <div id="output"></div>
 
-    <main>
-        <section id="about">
-            <h2>Work</h2>
-            <p>coming soon</p>
-        </section>
+    <script>
+        let pageList = [];  // 巡回するページリスト
+        let currentIndex = 0;  // 現在のページインデックス
+        let intervalId;  // リダイレクト用のタイマー
 
-        </section>
+        async function fetchWikipediaPage(keyword) {
+            const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(keyword)}&format=json&origin=*`);
+            const data = await response.json();
+            if (data.query.search.length > 0) {
+                const title = data.query.search[0].title;
+                return title;
+            }
+            return null;
+        }
 
-    </main>
+        async function fetchRelatedPages(title) {
+            const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=links&format=json&pllimit=10&origin=*`);
+            const data = await response.json();
+            const pages = data.query.pages;
+            const related = [];
+            for (let pageId in pages) {
+                if (pages[pageId].links) {
+                    pages[pageId].links.forEach(link => related.push(link.title));
+                }
+            }
+            return related;
+        }
 
+        function displayLine(text) {
+            const output = document.getElementById("output");
+            const line = document.createElement("div");
+            line.className = "line";
+            line.textContent = text;
+            line.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            output.prepend(line);
+        }
+
+        async function startRedirect() {
+            const keyword = document.getElementById("keyword").value;
+            if (!keyword) {
+                alert("キーワードを入力してください！");
+                return;
+            }
+
+            displayLine(`キーワード「${keyword}」で検索中...`);
+
+            // 初期ページの取得
+            const firstPage = await fetchWikipediaPage(keyword);
+            if (!firstPage) {
+                displayLine("該当するページが見つかりませんでした。");
+                return;
+            }
+
+            displayLine(`最初のページ: ${firstPage}`);
+
+            // 関連ページの取得
+            const relatedPages = await fetchRelatedPages(firstPage);
+            if (relatedPages.length === 0) {
+                displayLine("関連ページが見つかりませんでした。");
+                return;
+            }
+
+            // リスト作成
+            pageList = [firstPage, ...relatedPages];
+            displayLine(`巡回リスト: ${pageList.join(" → ")}`);
+
+            // 自動リダイレクト開始
+            currentIndex = 0;
+            intervalId = setInterval(redirectToNextPage, 3000);
+        }
+
+        function redirectToNextPage() {
+            if (pageList.length === 0) return;
+
+            const title = pageList[currentIndex];
+            const url = `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+            displayLine(`リダイレクト先: ${title}`);
+            currentIndex = (currentIndex + 1) % pageList.length;  // リストを巡回
+            setTimeout(() => {
+                window.location.href = url;  // リダイレクト
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
