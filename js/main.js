@@ -1,6 +1,8 @@
+let map;
+
 function initMap() {
   const center = { lat: 0.0000, lng: 0.0000 };
-  const map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(document.getElementById("map"), {
     center: center,
     zoom: 5,
     disableDefaultUI: true,
@@ -24,7 +26,21 @@ const works = [
   { title: "x6", img: "img/work6.jpg", link: "works/work6.html" },
 ];
 
-const radius = 30;
+// レスポンシブに対応した半径の計算
+function getRadius() {
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+  const vmin = Math.min(vw, vh);
+  
+  if (vmin <= 480) {
+    return 25; // スマートフォン
+  } else if (vmin <= 768) {
+    return 28; // タブレット
+  } else {
+    return 30; // デスクトップ
+  }
+}
+
 let angle = 0;
 let isHoveringImage = false;
 
@@ -48,6 +64,8 @@ items.forEach(el => {
 });
 
 function updatePositions() {
+  const radius = getRadius();
+  
   items.forEach((el, i) => {
     const theta = (angle + (360 / items.length) * i) * Math.PI / 180;
     const x = Math.cos(theta) * radius;
@@ -65,6 +83,9 @@ function animate() {
   updatePositions();
   requestAnimationFrame(animate);
 }
+
+// リサイズ時の対応
+window.addEventListener('resize', updatePositions);
 
 updatePositions();
 animate();
