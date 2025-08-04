@@ -1,0 +1,145 @@
+/* 背景と基本設定 */
+html, body {
+    background: #8ED8EC;
+    margin: 0;
+    padding: 0;
+    font-family: 'Crimson Text', serif;
+    font-size: 14px;
+    color: white;
+    cursor: none;
+    overflow-x: hidden; /* 横スクロール防止 */
+    overflow-y: auto; /* 縦スクロール許可 */
+  }
+  
+  /* ナビゲーション（左寄せ、完全移植） */
+  .nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Fira Code', monospace;
+  }
+  
+  .nav .main a {
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav .sub {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .nav .sub a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+  
+  .nav .sub a:hover {
+    color: rgb(226, 38, 38);
+  }
+  
+  /* 作品詳細レイアウト */
+  .work-detail {
+    max-width: 960px;
+    margin: 160px auto 80px auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .title {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+    display: block;
+  }
+  
+  .description p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  
+  .youtube,
+  .video {
+    margin-top: 40px;
+  }
+  
+  iframe,
+  video {
+    width: 100%;
+    border: none;
+    display: block;
+  }
+  
+  /* 戻るリンクのスタイルを削除 */
+  
+  /* コピーライト（完全移植） */
+  .footer {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    z-index: 1000;
+    color: white;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .nav {
+      top: 15px;
+      left: 15px;
+    }
+  
+    .nav .main a {
+      font-size: 24px;
+    }
+  
+    .nav .sub a {
+      font-size: 12px;
+    }
+  
+    .work-detail {
+      margin: 120px auto 80px auto;
+      padding: 0 20px;
+    }
+  
+    .footer {
+      font-size: 11px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav .main a {
+      font-size: 20px;
+    }
+  
+    .nav .sub {
+      gap: 8px;
+    }
+  
+    .nav .sub a {
+      font-size: 11px;
+    }
+  
+    .work-detail {
+      margin: 100px auto 60px auto;
+      padding: 0 16px;
+    }
+  
+    .footer {
+      font-size: 10px;
+    }
+  }

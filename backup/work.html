@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>0n0e. - Work 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="work-detail.css" />
+  <link rel="icon" href="../common/pin.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600,600i,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ナビゲーション（左寄せ、フォントは Fira Code） -->
+  <div class="nav">
+    <div class="main"><a href="../index.html">0n0e.</a></div>
+    <div class="sub">
+      <a href="index.html">works</a>
+      <a href="../about/index.html">about</a>
+    </div>
+  </div>
+
+  <main class="work-detail">
+    <h1 class="title">作品タイトル</h1>
+
+    <!-- サムネイル画像 -->
+    <img src="img/work1.jpg" alt="作品画像" class="thumbnail" />
+
+    <!-- 説明文 -->
+    <section class="description">
+      <p>
+        この作品は◯◯をテーマに制作されました。技術的にはHTML/CSS/JavaScriptを使用し、UI表現や映像との連動を重視しています。
+      </p>
+    </section>
+
+    <!-- YouTube埋め込み -->
+    <section class="youtube">
+      <iframe width="100%" height="400"
+        src="https://www.youtube.com/embed/動画ID"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </section>
+
+    <!-- mp4動画 -->
+    <section class="video">
+      <video controls width="100%" preload="metadata">
+        <source src="video/sample.mp4" type="video/mp4" />
+        お使いのブラウザでは動画が再生できません。
+      </video>
+    </section>
+
+    <!-- 戻るリンク -->
+    <div class="back-link">
+      <a href="index.html">← Back to Works</a>
+    </div>
+  </main>
+
+  <!-- カーソル -->
+  <script>
+    const cursorImagePath = "../common/pin.png";
+  </script>
+  <script src="../js/cursor.js"></script>
+
+</body>
+</html>

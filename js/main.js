@@ -9,18 +9,75 @@ function initMap() {
     mapTypeId: 'satellite'
   });
 
-  new google.maps.Marker({
-    position: center,
-    map: map,
-    title: "nullisland"
-  });
+  // マーカー用のカスタムコンテンツを作成
+  const markerContent = document.createElement('div');
+  markerContent.style.cssText = `
+    position: relative;
+    width: 61px;
+    height: 58px;
+    background-image: url('common/pin.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  `;
+
+  // 経度緯度ラベルを作成
+  const coordLabel = document.createElement('div');
+  coordLabel.textContent = '0.0000, 0.0000';
+  coordLabel.className = 'marker-coordinates';
+  coordLabel.style.cssText = `
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    white-space: nowrap;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+  `;
+
+  markerContent.appendChild(coordLabel);
+
+  // カスタムオーバーレイクラスを作成
+  class CustomMarker extends google.maps.OverlayView {
+    constructor(position, map) {
+      super();
+      this.position = position;
+      this.setMap(map);
+    }
+
+    onAdd() {
+      const pane = this.getPanes().overlayMouseTarget;
+      pane.appendChild(markerContent);
+    }
+
+    draw() {
+      const projection = this.getProjection();
+      const position = projection.fromLatLngToDivPixel(this.position);
+      
+      if (position) {
+        markerContent.style.left = (position.x - 30.5) + 'px';
+        markerContent.style.top = (position.y - 29) + 'px';
+      }
+    }
+
+    onRemove() {
+      if (markerContent.parentNode) {
+        markerContent.parentNode.removeChild(markerContent);
+      }
+    }
+  }
+
+  // カスタムマーカーを作成
+  new CustomMarker(center, map);
 }
 
 const wheel = document.getElementById("wheel");
 const works = [
-  { title: "x1", img: "img/work1.jpg", link: "works/work1.html" },
-  { title: "x2", img: "img/work2.jpg", link: "works/work2.html" },
-  { title: "x3", img: "img/work3.jpg", link: "works/work3.html" },
+  { title: "とおいね/しずかね/かなしいね 2025", img: "works/img/toe1.jpg", link: "works/work1.html" },
+  { title: "nullisland/Dear.Media 2025", img: "works/img/null1.jpg", link: "works/work2.html" },
+  { title: "7/11-VJwork 2025", img: "works/img/0711.jpg", link: "works/work3.html" },
   { title: "x4", img: "img/work4.jpg", link: "works/work4.html" },
   { title: "x5", img: "img/work5.jpg", link: "works/work5.html" },
   { title: "x6", img: "img/work6.jpg", link: "works/work6.html" },

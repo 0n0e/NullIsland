@@ -147,6 +147,11 @@ html, body {
   #coordinates {
     font-size: 10px;
   }
+  
+  /* マーカーの経度緯度表示もレスポンシブ対応 */
+  .marker-coordinates {
+    font-size: 10px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -176,5 +181,10 @@ html, body {
   
   .item p {
     font-size: 11px;
+  }
+  
+  /* より小さい画面でのマーカー経度緯度表示 */
+  .marker-coordinates {
+    font-size: 9px !important;
   }
 }
