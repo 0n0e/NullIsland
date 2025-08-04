@@ -1,159 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wikipedia Redirect Art</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        #input-container {
-            position: absolute;
-            top: 10%;
-            z-index: 10;
-            text-align: center;
-        }
-        #keyword {
-            font-size: 20px;
-            padding: 10px;
-            border: 1px solid white;
-            background: black;
-            color: white;
-            outline: none;
-        }
-        #circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .circle-item {
-            position: absolute;
-            transform-origin: center;
-        }
-        #site-display {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 30px;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            pointer-events: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>0n0e. - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+  <link rel="icon" href="common/pin.png" type="image/png" />
 </head>
 <body>
-    <div id="input-container">
-        <input type="text" id="keyword" placeholder="キーワードを入力">
-        <button onclick="startRedirect()">開始</button>
+
+  <div id="map"></div>
+
+  <div class="nav">
+    <div class="main"><a href="index.html">0n0e.</a></div>
+    <div class="sub">
+      <a href="works/index.html">works</a>
+      <a href="about/index.html">about</a>
     </div>
-    <div id="circle"></div>
-    <div id="site-display"></div>
+  </div>
 
-    <script>
-        let pageList = [];
-        let currentIndex = 0;
-        let intervalId;
-        const displayDuration = 3000; // ウェブサイト名を表示する時間
+  <div class="wheel" id="wheel"></div>
 
-        function adjustCircleSize(items) {
-            const circle = document.getElementById("circle");
-            circle.innerHTML = "";
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            const radius = Math.min(screenWidth, screenHeight) * 0.4; // 画面の40%を円の半径とする
-            const angleStep = (2 * Math.PI) / items.length;
+  <footer class="footer">
+    ©2025 0n0e.
+  </footer>
 
-            items.forEach((item, index) => {
-                const angle = index * angleStep;
-                const x = radius * Math.cos(angle);
-                const y = radius * Math.sin(angle);
-                const div = document.createElement("div");
-                div.className = "circle-item";
-                div.style.transform = `translate(${x}px, ${y}px)`;
-                div.style.fontSize = `${Math.max(radius * 0.05, 16)}px`; // 半径に応じてフォントサイズを調整
-                div.textContent = item;
-                circle.appendChild(div);
-            });
-        }
-
-        async function fetchWikipediaPage(keyword) {
-            const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(keyword)}&format=json&origin=*`);
-            const data = await response.json();
-            if (data.query.search.length > 0) {
-                return data.query.search[0].title;
-            }
-            return null;
-        }
-
-        async function fetchRelatedPages(title) {
-            const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=links&format=json&pllimit=10&origin=*`);
-            const data = await response.json();
-            const pages = data.query.pages;
-            const related = [];
-            for (let pageId in pages) {
-                if (pages[pageId].links) {
-                    pages[pageId].links.forEach(link => related.push(link.title));
-                }
-            }
-            return related;
-        }
-
-        async function startRedirect() {
-            const keyword = document.getElementById("keyword").value;
-            if (!keyword) {
-                alert("キーワードを入力してください！");
-                return;
-            }
-
-            const firstPage = await fetchWikipediaPage(keyword);
-            if (!firstPage) {
-                alert("該当するページが見つかりません。");
-                return;
-            }
-
-            const relatedPages = await fetchRelatedPages(firstPage);
-            if (relatedPages.length === 0) {
-                alert("関連ページが見つかりませんでした。");
-                return;
-            }
-
-            pageList = [firstPage, ...relatedPages];
-            adjustCircleSize(pageList);
-
-            currentIndex = 0;
-            intervalId = setInterval(redirectToNextPage, displayDuration + 1000);
-        }
-
-        function redirectToNextPage() {
-            const title = pageList[currentIndex];
-            const url = `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`;
-
-            const siteDisplay = document.getElementById("site-display");
-            siteDisplay.textContent = title;
-            siteDisplay.style.opacity = 1;
-
-            setTimeout(() => {
-                siteDisplay.style.opacity = 0;
-            }, displayDuration);
-
-            currentIndex = (currentIndex + 1) % pageList.length;
-
-            if (currentIndex === 0) {
-                adjustCircleSize(pageList); // 円を更新
-            }
-        }
-    </script>
+  <script src="js/main.js"></script>
+  <script src="js/cursor.js"></script>  <!-- カーソル用スクリプトを追加 -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNPMDoDMYyzrPJzAICxc2_NkHiaSBjmiY&callback=initMap">
+  </script>
 </body>
 </html>

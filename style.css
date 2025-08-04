@@ -1,0 +1,100 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Fira Code', monospace;
+  color: white;
+  cursor: none; /* 元カーソルは非表示 */
+}
+
+#map {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav .main a {
+  font-size: 28px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav .sub {
+  display: flex;
+  gap: 12px;
+}
+
+.nav .sub a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.nav .sub a:hover {
+  color: rgb(226, 38, 38);
+}
+
+.wheel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130px;
+  text-align: center;
+  transform-origin: center center;
+  transition: transform 0.3s;
+}
+
+.item a {
+  display: block;
+  width: 130px;
+  margin: 0 auto;
+  color: white;
+  text-decoration: none;
+}
+
+.item img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.item p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  z-index: 1000;
+  color: white;
+}

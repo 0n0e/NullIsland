@@ -1,0 +1,63 @@
+/* works専用スタイル */
+
+/* 背景色変更（Googleマップ海っぽい青） */
+html, body {
+  background: #001f3f;
+  cursor: none; /* 元カーソル非表示 */
+}
+
+/* worksメインコンテナ */
+.works-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 横2列 */
+  gap: 12px;
+  max-width: 960px;
+  margin: 100px auto 80px auto; /* ナビ下空けて中央寄せ */
+  padding: 0 24px; /* 両サイド少し余裕 */
+  z-index: 1;
+}
+
+/* 作品アイテム */
+.work-item {
+  position: relative;
+  display: block;
+  cursor: none;
+  overflow: visible;
+  text-decoration: none;
+  color: white;
+}
+
+/* 画像は幅100%で高さ自動、元比率保持 */
+.work-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+/* infoは画像上に重ねて非表示 */
+.work-item .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255 255 255 / 0.8);
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ホバーでタイトル表示 */
+.work-item:hover .info {
+  opacity: 1;
+}
