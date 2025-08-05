@@ -22,14 +22,9 @@
   </div>
 
   <main class="work-detail">
-    <h1 class="title">nullisland/Dear.Media 2025</h1>
+    <!-- タイトル -->
+    <h1 class="title">nullisland/Dear.Media</h1>
 
-    <div class="thumbnails">
-      <img src="img/null1.jpg" alt="作品画像1" class="thumbnail" />
-      <img src="img/null2.jpg" alt="作品画像2" class="thumbnail" />
-      <img src="img/null3.jpg" alt="作品画像3" class="thumbnail" />
-    </div>
-    
     <!-- 説明文 -->
     <section class="description">
       <p>
@@ -37,13 +32,20 @@
       </p>
     </section>
 
-        <!-- mp4動画 -->
-        <section class="video">
-          <video controls width="100%" preload="metadata">
-            <source src="video/nullv.mp4" type="video/mp4" />
-            お使いのブラウザでは動画が再生できません。
-          </video>
-        </section>
+    <!-- 写真 -->
+    <div class="thumbnails">
+      <img src="img/null1.jpg" alt="作品画像1" class="thumbnail" />
+      <img src="img/null2.jpg" alt="作品画像2" class="thumbnail" />
+      <img src="img/null3.jpg" alt="作品画像3" class="thumbnail" />
+    </div>
+    
+    <!-- 映像 -->
+    <section class="video">
+      <video controls width="100%" preload="metadata">
+        <source src="video/nullv.mp4" type="video/mp4" />
+        お使いのブラウザでは動画が再生できません。
+      </video>
+    </section>
 
     <!-- YouTube埋め込み -->
     <iframe width="100%" height="400"
@@ -52,7 +54,15 @@
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
-  </iframe>
+    </iframe>
+
+  </main>
+
+  <!-- コピーライト -->
+  <div class="footer">
+    © 2024 0n0e. All rights reserved.
+  </div>
+
   <!-- カーソル -->
   <script>
     const cursorImagePath = "../common/pin.png";

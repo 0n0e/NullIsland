@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  overflow: auto; /* works.cssでスクロール有効化に合わせて修正 */
   background: #000;
   font-family: 'Fira Code', monospace;
   color: white;
@@ -78,7 +78,6 @@ html, body {
 .item img {
   width: 100px;
   height: auto;
-  border-radius: 8px;
   display: block;
   margin: 0 auto;
   pointer-events: none;

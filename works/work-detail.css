@@ -47,43 +47,66 @@ html, body {
   
   /* 作品詳細レイアウト */
   .work-detail {
-    max-width: 960px;
+    max-width: 800px;
     margin: 160px auto 80px auto;
     padding: 0 24px;
     position: relative;
     z-index: 1;
   }
   
+  /* タイトル */
   .title {
-    font-size: 22px;
-    margin-bottom: 24px;
+    font-size: 24px;
+    margin-bottom: 32px;
+    font-weight: 600;
   }
   
-  .thumbnail {
-    width: 100%;
-    height: auto;
-    margin-bottom: 24px;
-    display: block;
+  /* 説明文セクション */
+  .description {
+    margin-bottom: 40px;
   }
   
   .description p {
     margin-bottom: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 16px;
   }
   
-  .youtube,
-  .video {
-    margin-top: 40px;
+  /* サムネイル画像セクション */
+  .thumbnails {
+    margin-bottom: 40px;
   }
   
-  iframe,
-  video {
+  .thumbnail {
     width: 100%;
+    max-width: 480px;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+  }
+  
+  /* 動画セクション */
+  .video {
+    margin-bottom: 32px;
+  }
+  
+  .video video {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
     border: none;
     display: block;
   }
   
-  /* 戻るリンクのスタイルを削除 */
+  /* YouTube埋め込み */
+  iframe {
+    width: 100%;
+    max-width: 480px;
+    height: 270px; /* 16:9比率で480pxに対応 */
+    border: none;
+    display: block;
+    margin-bottom: 32px;
+  }
   
   /* コピーライト（完全移植） */
   .footer {
@@ -114,6 +137,26 @@ html, body {
     .work-detail {
       margin: 120px auto 80px auto;
       padding: 0 20px;
+      max-width: 100%;
+    }
+    
+    .title {
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+    
+    .description p {
+      font-size: 14px;
+    }
+    
+    .thumbnail,
+    .video video {
+      max-width: 100%;
+    }
+    
+    iframe {
+      max-width: 100%;
+      height: calc(100vw * 0.5625 - 40px); /* モバイルでの16:9比率 */
     }
   
     .footer {
@@ -137,6 +180,15 @@ html, body {
     .work-detail {
       margin: 100px auto 60px auto;
       padding: 0 16px;
+    }
+    
+    .title {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    
+    iframe {
+      height: calc(100vw * 0.5625 - 32px);
     }
   
     .footer {

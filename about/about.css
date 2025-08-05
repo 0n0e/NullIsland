@@ -4,11 +4,35 @@ body.about-body {
     font-family: 'Fira Code', monospace;
     color: white;
     height: 100vh;
-    background: url('./onoe0705.png') no-repeat left center / auto 100vh fixed;
+    background: url('./onoe0705.png') no-repeat center center / cover fixed;
     overflow: hidden;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+  
+  /* Language toggle */
+  .language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .lang-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 0;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+  }
+  
+  .lang-btn:hover {
+    text-decoration: underline;
   }
   
   .about-content {
@@ -36,6 +60,16 @@ body.about-body {
     text-decoration: underline;
   }
   
+  .content-section {
+    display: none;
+  }
+  
+  .content-section.active {
+    display: block;
+  }
+  
+  
+  
   @media (max-width: 768px) {
     body.about-body {
       flex-direction: column;
@@ -49,5 +83,12 @@ body.about-body {
       max-width: 100%;
       padding: 20px;
     }
-  }
   
+    .language-toggle {
+      position: relative;
+      top: 10px;
+      right: 10px;
+      justify-content: flex-end;
+      width: 100%;
+    }
+  }

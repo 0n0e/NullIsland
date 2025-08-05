@@ -78,8 +78,8 @@ const works = [
   { title: "とおいね/しずかね/かなしいね 2025", img: "works/img/toe1.jpg", link: "works/work1.html" },
   { title: "nullisland/Dear.Media 2025", img: "works/img/null1.jpg", link: "works/work2.html" },
   { title: "7/11-VJwork 2025", img: "works/img/0711.jpg", link: "works/work3.html" },
-  { title: "x4", img: "img/work4.jpg", link: "works/work4.html" },
-  { title: "x5", img: "img/work5.jpg", link: "works/work5.html" },
+  { title: "BLUTARHYTHM 他2篇 2023", img: "works/img/blutarhythm1.png", link: "works/work4.html" },
+  { title: "Planet P live performance 2025", img: "works/img/PlanetP1.jpg", link: "works/work5.html" },
   { title: "x6", img: "img/work6.jpg", link: "works/work6.html" },
 ];
 

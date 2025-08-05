@@ -4,36 +4,58 @@
 html, body {
   background: #8ED8EC;
   cursor: none; /* 元カーソル非表示 */
+  overflow: auto; /* スクロール有効化 */
+  height: auto; /* 高さ制限解除 */
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Code', monospace;
+  color: white;
 }
 
 /* worksメインコンテナ */
 .works-container {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 横2列 */
-  gap: 12px;
-  max-width: 960px;
-  margin: 100px auto 80px auto; /* ナビ下空けて中央寄せ */
-  padding: 0 24px; /* 両サイド少し余裕 */
+  width: 960px;
+  margin: 0 auto;
+  min-height: 900px;
+  padding: 110px 0 0 0;
   z-index: 1;
+  overflow: hidden;
 }
 
 /* 作品アイテム */
 .work-item {
+  overflow: hidden;
   position: relative;
-  display: block;
+  float: left;
+  width: 440px; /* 2列配置用の幅 (960px - 40px margin) ÷ 2 */
+  margin: 0 20px 30px 20px;
   cursor: none;
-  overflow: visible;
   text-decoration: none;
   color: white;
 }
 
-/* 画像は幅100%で高さ自動、元比率保持 */
+/* 2列目の要素（偶数番目）のマージン調整 */
+.work-item:nth-child(2n) {
+  margin-right: 0;
+}
+
+/* 1列目の要素（奇数番目）のマージン調整 */
+.work-item:nth-child(2n+1) {
+  margin-left: 0;
+}
+
+/* ホバー効果 */
+.work-item:hover {
+  opacity: 0.5;
+}
+
+/* 画像は元の縦横比を保持しつつ幅制限 */
 .work-item img {
   width: 100%;
+  max-width: 440px;
   height: auto;
   display: block;
-  vertical-align: middle;
   pointer-events: none;
 }
 
@@ -44,8 +66,8 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255 255 255 / 0.8);
-  color: black;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white; /* ホバー時は白文字 */
   font-weight: bold;
   font-size: 16px;
   display: flex;
@@ -55,9 +77,72 @@ html, body {
   transition: opacity 0.3s ease;
   pointer-events: none;
   user-select: none;
+  text-align: center;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 /* ホバーでタイトル表示 */
 .work-item:hover .info {
   opacity: 1;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 960px) {
+  .works-container {
+    width: 100%;
+    padding: 110px 20px 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .works-container {
+    padding: 80px 16px 0 16px;
+  }
+  
+  .work-item {
+    width: calc(50% - 20px);
+    margin: 0 10px 20px 10px;
+  }
+  
+  .work-item:nth-child(2n) {
+    margin-right: 10px;
+  }
+  
+  .work-item:nth-child(2n+1) {
+    margin-left: 10px;
+  }
+  
+  .work-item .info {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .works-container {
+    padding: 60px 12px 0 12px;
+  }
+  
+  .work-item {
+    float: none;
+    margin: 0 0 20px 0;
+    width: 100%;
+  }
+  
+  .work-item:nth-child(2n),
+  .work-item:nth-child(2n+1) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .work-item img {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .work-item .info {
+    font-size: 12px;
+    padding: 6px;
+  }
 }
