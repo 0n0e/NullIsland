@@ -80,7 +80,7 @@ const works = [
   { title: "7/11-VJwork 2025", img: "works/img/0711.jpg", link: "works/work3.html" },
   { title: "BLUTARHYTHM 他2篇 2023", img: "works/img/blutarhythm1.png", link: "works/work4.html" },
   { title: "Planet P live performance 2025", img: "works/img/PlanetP1.jpg", link: "works/work5.html" },
-  { title: "x6", img: "img/work6.jpg", link: "works/work6.html" },
+  { title: "developing 2024", img: "works/img/developing1.jpg", link: "works/work6.html" },
 ];
 
 // レスポンシブに対応した半径の計算
