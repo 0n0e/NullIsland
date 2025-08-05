@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>0n0e. - developing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="work-detail.css" />
+  <link rel="icon" href="../common/pin.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600,600i,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ナビゲーション（左寄せ、フォントは Fira Code） -->
+  <div class="nav">
+    <div class="main"><a href="../index.html">0n0e.</a></div>
+    <div class="sub">
+      <a href="index.html">works</a>
+      <a href="../about/index.html">about</a>
+    </div>
+  </div>
+
+  <main class="work-detail">
+    <!-- タイトル -->
+    <h1 class="title">developing</h1>
+
+    <!-- 説明文 -->
+    <section class="description">
+      <p>
+    写真展示にワイヤーを張り巡らせその一部分にピックアップを設置することで、その弦を鑑賞者がはじくことで部屋が電球で照らされます。
+    現像室のような質感とデジタルにおける作品展示をかけあわせました。音はAbleton for MAX 電球の制御にArduino を用いています。
+      </p>
+    </section>
+
+    <!-- 写真 -->
+    <div class="thumbnails">
+      <img src="img/developing1.jpg" alt="作品画像" class="thumbnail" />
+      <img src="img/developing2.jpg" alt="作品画像" class="thumbnail" />
+      <img src="img/developing3.jpg" alt="作品画像" class="thumbnail" />
+      <img src="img/developing4.jpg" alt="作品画像" class="thumbnail" />
+      <img src="img/developing5.png" alt="作品画像" class="thumbnail" />
+      <img src="img/developing6.png" alt="作品画像" class="thumbnail" />
+    </div>
+
+    <!-- 映像 -->
+    <section class="video">
+        <video controls width="100%" preload="metadata">
+          <source src="video/developing1.mp4" type="video/mp4" />
+          お使いのブラウザでは動画が再生できません。
+        </video>
+      </section>
+    
+          <!-- 映像 -->
+    <section class="video">
+        <video controls width="100%" preload="metadata">
+          <source src="video/developing2.mp4" type="video/mp4" />
+          お使いのブラウザでは動画が再生できません。
+        </video>
+      </section>
+    
+
+  </main>
+
+  <!-- コピーライト -->
+  <div class="footer">
+    © 2024 0n0e. All rights reserved.
+  </div>
+
+  <!-- カーソル -->
+  <script>
+    const cursorImagePath = "../common/pin.png";
+  </script>
+  <script src="../js/cursor.js"></script>
+
+</body>
+</html>
