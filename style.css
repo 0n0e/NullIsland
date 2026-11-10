@@ -1,0 +1,189 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto; /* works.cssでスクロール有効化に合わせて修正 */
+  background: #000;
+  font-family: 'Fira Code', monospace;
+  color: white;
+  cursor: none; /* 元カーソルは非表示 */
+}
+
+#map {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav .main a {
+  font-size: 28px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav .sub {
+  display: flex;
+  gap: 12px;
+}
+
+.nav .sub a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.nav .sub a:hover {
+  color: rgb(226, 38, 38);
+}
+
+.wheel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.item {
+  position: absolute;
+  width: 130px;
+  text-align: center;
+  transform-origin: center center;
+  transition: transform 0.3s;
+}
+
+.item a {
+  display: block;
+  width: 130px;
+  margin: 0 auto;
+  color: white;
+  text-decoration: none;
+}
+
+.item img {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.item p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  z-index: 1000;
+  color: white;
+}
+
+/* 経度緯度表示用のスタイル */
+#coordinates {
+  position: fixed;
+  color: white;
+  font-size: 12px;
+  font-family: 'Fira Code', monospace;
+  pointer-events: none;
+  z-index: 9998;
+  white-space: nowrap;
+  transform: translate(10px, -30px);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .nav {
+    top: 15px;
+    left: 15px;
+  }
+  
+  .nav .main a {
+    font-size: 24px;
+  }
+  
+  .nav .sub a {
+    font-size: 12px;
+  }
+  
+  .item {
+    width: 100px;
+  }
+  
+  .item a {
+    width: 100px;
+  }
+  
+  .item img {
+    width: 80px;
+  }
+  
+  .item p {
+    font-size: 12px;
+  }
+  
+  #coordinates {
+    font-size: 10px;
+  }
+  
+  /* マーカーの経度緯度表示もレスポンシブ対応 */
+  .marker-coordinates {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav .main a {
+    font-size: 20px;
+  }
+  
+  .nav .sub {
+    gap: 8px;
+  }
+  
+  .nav .sub a {
+    font-size: 11px;
+  }
+  
+  .item {
+    width: 80px;
+  }
+  
+  .item a {
+    width: 80px;
+  }
+  
+  .item img {
+    width: 60px;
+  }
+  
+  .item p {
+    font-size: 11px;
+  }
+  
+  /* より小さい画面でのマーカー経度緯度表示 */
+  .marker-coordinates {
+    font-size: 9px !important;
+  }
+}
